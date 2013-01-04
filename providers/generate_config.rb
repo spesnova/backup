@@ -7,6 +7,7 @@ action :setup do
   end
   
   template "#{new_resource.base_dir}/config.rb" do
+    cookbook "backup"
     source "config.rb.erb"
     variables({
                 :encryption_password => new_resource.encryption_password
