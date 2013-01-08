@@ -72,73 +72,113 @@ Attribute Parameters:
 Usage
 =====
 
-There is an ininite ways you can implement this cookbook into your environment in theory.  An working example might be,
+There are infinite ways you can implement this cookbook into your environment in theory.  A working example might be:
 
 * Backing up MongoDB to S3
   1. Ensure your mongodb cookbook depends on the backup cookbook
   2. Add the following to your mongodb cookbook
 
-        backup_install node.name  
-        backup_generate_config node.name  
-        package "libxml2-dev"  
-        package "libxslt1-dev"  
-        gem_package "fog" do  
-          version "~> 1.4.0"  
-        end  
-        backup_generate_model "mongodb" do  
-          description "Our shard"  
-          backup_type "database"  
-          database_type "MongoDB"  
-          split_into_chunks_of 2048  
-          store_with({"engine" => "S3", "settings" => { "s3.access_key_id" => "example", "s3.secret_access_key" => "sample", "s3.region" => "us-east-1", "s3.bucket" => "sample", "s3.path" => "/", "s3.keep" => 10 } } )  
-          options({"db.host" => "\"localhost\"", "db.lock" => true})  
-          mailto "some@example.com"  
-          action :backup  
-        end  
-      
+```ruby
+  backup_install node.name
+  backup_generate_config node.name
+  package "libxml2-dev"
+  package "libxslt1-dev"
+  gem_package "fog" do
+    version "~> 1.4.0"
+  end
+
+  backup_generate_model "mongodb" do
+    description "Our shard"
+    backup_type "database"
+    database_type "MongoDB"
+    split_into_chunks_of 2048
+    store_with({
+      "engine" => "S3",
+      "settings" => {
+        "s3.access_key_id" => "example",
+        "s3.secret_access_key" => "sample",
+        "s3.region" => "us-east-1",
+        "s3.bucket" => "sample",
+        "s3.path" => "/", "s3.keep" => 10 }
+    })
+    options({ "db.host" => "\"localhost\"", "db.lock" => true })
+    mailto "some@example.com"
+    action :backup
+  end
+```    
 
 * Backing up PostgreSQL to S3
   1. Ensure your postgresql cookbook depends on the backup cookbook
   2. Add the following to your postgresql cookbook
   
-        backup_install node.name  
-        backup_generate_config node.name  
-        package "libxml2-dev"  
-        package "libxslt1-dev"  
-        gem_package "fog" do  
-          version "~> 1.4.0"  
-        end  
-        backup_generate_model "pg" do  
-          description "backup of postgres"  
-          backup_type "database"  
-          database_type "PostgreSQL"  
-          split_into_chunks_of 2048  
-          store_with({"engine" => "S3", "settings" => { "s3.access_key_id" => "sample", "s3.secret_access_key" => "sample", "s3.region" => "us-east-1", "s3.bucket" => "sample", "s3.path" => "/", "s3.keep" => 10 } } )
-  options({"db.name" => "\"postgres\"", "db.username" => "\"postgres\"", "db.password" => "\"somepassword\"", "db.host" => "\"localhost\"" })  
-          mailto "sample@example.com"  
-          action :backup  
-        end
+```ruby
+  backup_install node.name
+  backup_generate_config node.name
+  package "libxml2-dev"
+  package "libxslt1-dev"
+  gem_package "fog" do
+    version "~> 1.4.0"
+  end
+
+  backup_generate_model "pg" do
+    description "backup of postgres"
+    backup_type "database"
+    database_type "PostgreSQL"
+    split_into_chunks_of 2048
+    store_with({
+      "engine" => "S3",
+      "settings" => {
+        "s3.access_key_id" => "sample",
+        "s3.secret_access_key" => "sample",
+        "s3.region" => "us-east-1",
+        "s3.bucket" => "sample",
+        "s3.path" => "/",
+        "s3.keep" => 10 } 
+    })
+  options({
+    "db.name" => "\"postgres\"",
+    "db.username" => "\"postgres\"",
+    "db.password" => "\"somepassword\"",
+    "db.host" => "\"localhost\"" })
+    mailto "sample@example.com"
+    action :backup
+  end
+```
 
 * Backing up Files to S3
   1. Ensure the cookbook are updating depends on the backup cookbook.
   2. Add the following to that cookbook
   
-        backup_install node.name   
-        backup_generate_config node.name  
-        package "libxml2-dev"  
-        package "libxslt1-dev"  
-        gem_package "fog" do  
-          version "~> 1.4.0"  
-        end  
-        backup_generate_model "home" do  
-          description "backup of /home"  
-          backup_type "archive"  
-          split_into_chunks_of 250  
-          store_with({"engine" => "S3", "settings" => { "s3.access_key_id" => "sample", "s3.secret_access_key" => "sample", "s3.region" => "us-east-1", "s3.bucket" => "sample", "s3.path" => "/", "s3.keep" => 10 } } )  
-          options({"add" => ["/home/","/root/"], "exclude" => ["/home/tmp"], "tar_options" => "-p"})  
-          mailto "sample@example.com"  
-          action :backup  
-        end  
+```ruby
+  backup_install node.name
+  backup_generate_config node.name
+  package "libxml2-dev"
+  package "libxslt1-dev"
+  gem_package "fog" do
+    version "~> 1.4.0"
+  end
+
+  backup_generate_model "home" do
+    description "backup of /home"
+    backup_type "archive"
+    split_into_chunks_of 250
+    store_with({
+      "engine" => "S3",
+      "settings" => {
+        "s3.access_key_id" => "sample",
+        "s3.secret_access_key" => "sample",
+        "s3.region" => "us-east-1",
+        "s3.bucket" => "sample",
+        "s3.path" => "/",
+        "s3.keep" => 10 }
+    })
+    options({
+      "add" => ["/home/","/root/"],
+      "exclude" => ["/home/tmp"], "tar_options" => "-p" })
+    mailto "sample@example.com"
+    action :backup
+  end
+``` 
 
 * There is no technical reason you cannot load more of this code in via an `role` or an `data bag` instead.
 
