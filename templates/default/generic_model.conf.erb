@@ -1,9 +1,12 @@
 # encoding: utf-8
 
+# This file is managed by Chef for <%= node["fqdn"] %>
+# DO NOT modify this file directly.
+
 ##
 # Backup Generated: <%= @name %>
 # Once configured, you can run the backup with the following command:
-# 
+#
 # $ backup perform -t <%= @name %> [-c <path_to_configuration_file>]
 #
 Backup::Model.new(:<%= @name %>, '<%= @description %>') do
