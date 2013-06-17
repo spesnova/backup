@@ -8,6 +8,8 @@ action :backup do
     mailto new_resource.mailto 
     user node["backup"]["user"]
     command "backup perform -t #{new_resource.name} -c #{new_resource.base_dir}/config.rb"
+    path node["backup"]["cron"]["path"] 
+    shell node["backup"]["cron"]["shell"] 
     action :create
   end
   template "#{new_resource.base_dir}/models/#{new_resource.name}.rb" do

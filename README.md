@@ -66,6 +66,8 @@ See the `attributes/default.rb` for default values.
 
 * `node["backup"]["user"]` - String - The user run backup perform and owner of backup files.
 * `node["backup"]["group"]` - String - The group of backup files.
+* `node["backup"]["cron"]["path"]` - String - Use to set the PATH environment variable.
+* `node["backup"]["cron"]["shell"]` - String - Use to set the SHELL environment variable.
 * `node["backup"]["log_options"]["console_quiet"]` - Boolean - default to `false`
 * `node["backup"]["log_options"]["logfile_enabled"]` - Boolean - default to `true`
 * `node["backup"]["log_options"]["logile_log_path"]` - String - default to `"/opt/backup/logs"`

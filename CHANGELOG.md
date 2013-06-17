@@ -1,3 +1,7 @@
+## v0.0.8:
+
+* Enable to specify cron PATH and SHELL environment variable
+
 ## v0.0.7:
 
 * Remove notify from template resource to cron resource

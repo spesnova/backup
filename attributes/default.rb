@@ -20,6 +20,8 @@
 
 default["backup"]["user"]                               = "root"
 default["backup"]["group"]                              = "root"
+default["backup"]["cron"]["path"]                       = "/usr/bin:/bin"
+default["backup"]["cron"]["shell"]                      = "/bin/sh"
 default["backup"]["log_configure"]["console_quiet"]     = false
 default["backup"]["log_configure"]["logfile_enabled"]   = true
 default["backup"]["log_configure"]["logfile_log_path"]   = "/opt/backup/logs"
