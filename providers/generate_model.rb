@@ -8,7 +8,7 @@ action :backup do
     mailto new_resource.mailto 
     user node["backup"]["user"]
     command "backup perform -t #{new_resource.name} -c #{new_resource.base_dir}/config.rb"
-    action :nothing
+    action :create
   end
   template "#{new_resource.base_dir}/models/#{new_resource.name}.rb" do
     owner node["backup"]["user"]
@@ -26,7 +26,6 @@ action :backup do
                 :database_type => new_resource.database_type,
                 :store_with => new_resource.store_with
               })
-    notifies :create, resources(:cron => "scheduled backup: " + new_resource.name), :immediately
   end
   new_resource.updated_by_last_action(true)
 end
