@@ -1,12 +1,16 @@
 action :setup do
   %w{keys models logs}.each do |p|
     directory "#{new_resource.base_dir}/#{p}" do
+      owner node["backup"]["user"]
+      group node["backup"]["group"]
       action :create
       recursive true
     end
   end
 
   template "#{new_resource.base_dir}/config.rb" do
+    owner node["backup"]["user"]
+    group node["backup"]["group"]
     cookbook "backup"
     source "config.rb.erb"
     variables({

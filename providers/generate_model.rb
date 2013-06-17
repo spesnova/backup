@@ -6,10 +6,13 @@ action :backup do
     month new_resource.month || "*"
     weekday new_resource.weekday || "*"
     mailto new_resource.mailto 
+    user node["backup"]["user"]
     command "backup perform -t #{new_resource.name} -c #{new_resource.base_dir}/config.rb"
     action :nothing
   end
   template "#{new_resource.base_dir}/models/#{new_resource.name}.rb" do
+    owner node["backup"]["user"]
+    group node["backup"]["group"]
     mode 0600
     source new_resource.options["source"] || "generic_model.conf.erb"
     cookbook new_resource.options["cookbook"] || "backup"

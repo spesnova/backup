@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+default["backup"]["user"]                               = "root"
+default["backup"]["group"]                              = "root"
 default["backup"]["log_configure"]["console_quiet"]     = false
 default["backup"]["log_configure"]["logfile_enabled"]   = true
 default["backup"]["log_configure"]["logfile_log_path"]   = "/opt/backup/logs"

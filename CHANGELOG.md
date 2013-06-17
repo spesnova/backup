@@ -1,3 +1,7 @@
+## v0.0.6:
+
+* Add node attribute to change backup user and group
+
 ## v0.0.5:
 
 * Add loggin configure
