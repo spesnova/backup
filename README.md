@@ -195,10 +195,15 @@ There are infinite ways you can implement this cookbook into your environment in
 * There is no technical reason you cannot load more of this code in via an `role` or an `data bag` instead.
 
 # License and Author
+Author
 
-Author:: Scott Likens (<scott@likens.us>)
+* Author:: Scott Likens (<scott@likens.us>)
+* Contributor:: Seigo Uchida (<spesnova@gmail.com>)
 
-Copyright 2012, Scott M. Likens, Inc.
+Copyright
+
+* Copyright 2012, Scott M. Likens, Inc.
+* Copyright 2013, Seigo Uchida
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
