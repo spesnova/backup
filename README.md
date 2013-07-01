@@ -66,6 +66,8 @@ See the `attributes/default.rb` for default values.
 
 * `node["backup"]["user"]` - String - The user run backup perform and owner of backup files.
 * `node["backup"]["group"]` - String - The group of backup files.
+* `node["backup"]["basedir"]` - String - Base directory that backup files put in.
+* `node["backup"]["encryption_password"]` - String - default to `nil`
 * `node["backup"]["cron"]["path"]` - String - Use to set the PATH environment variable.
 * `node["backup"]["cron"]["shell"]` - String - Use to set the SHELL environment variable.
 * `node["backup"]["log_options"]["console_quiet"]` - Boolean - default to `false`

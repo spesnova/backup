@@ -1,3 +1,7 @@
+## v0.0.9:
+
+* Add default attribute
+
 ## v0.0.8:
 
 * Enable to specify cron PATH and SHELL environment variable

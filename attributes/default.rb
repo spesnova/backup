@@ -20,6 +20,8 @@
 
 default["backup"]["user"]                               = "root"
 default["backup"]["group"]                              = "root"
+default["backup"]["base_dir"]                           = "/opt/backup"
+default["backup"]["encryption_password"]                = nil
 default["backup"]["cron"]["path"]                       = "/usr/bin:/bin"
 default["backup"]["cron"]["shell"]                      = "/bin/sh"
 default["backup"]["log_configure"]["console_quiet"]     = false
